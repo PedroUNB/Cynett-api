@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    command: yarn start
+    container_name: app
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '5'
