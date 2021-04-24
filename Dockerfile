@@ -16,6 +16,6 @@ COPY --from=builder /usr/app/dist ./dist
 
 COPY .env .
 
-EXPOSE 3000
+EXPOSE 4000
 
 CMD yarn start
