@@ -14,7 +14,7 @@ RUN yarn install --production
 
 COPY --from=builder /usr/app/dist ./dist
 
-COPY .env .
+COPY .env.prod .
 
 EXPOSE 4000
 
