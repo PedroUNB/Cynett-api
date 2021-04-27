@@ -1,17 +1,23 @@
 import express, { Application } from 'express'
 import cors from 'cors'
-
-import Controllers from './routes'
 import morgan from 'morgan'
+
+import mongoose from '@config/mongodb'
+import Controllers from './routes'
 class App {
   express: Application
 
   constructor() {
     this.express = express()
 
+    this.mongo()
     this.middlewares()
     this.routes(Controllers)
   };
+
+  private mongo() {
+    return mongoose
+  }
 
   private middlewares() {
     this.express.use(express.json())
