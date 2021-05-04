@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
-import redis, { RedisClient } from 'redis';
+import redis from 'redis';
 import dotenv from 'dotenv';
+import { promisify } from 'util';
+import RedisType from 'src/@types/redis';
 dotenv.config({
   path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env',
 });
 
 class Redis {
-  redis: RedisClient;
+  redis: RedisType;
 
   constructor() {
     this.redis = redis
@@ -22,6 +24,13 @@ class Redis {
       .on('error', () => {
         console.log('[REDIS]: Connection Error');
       });
+
+    this.redis.getAsync = this.getAsync();
+  }
+
+  private getAsync() {
+    return promisify(this.redis.get).bind(this.redis);
   }
 }
-export default new Redis();
+
+export default new Redis().redis;
