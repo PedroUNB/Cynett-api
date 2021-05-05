@@ -28,7 +28,7 @@ class UserController implements IControllerBase {
   }
 
   index = async (req: Request, res: Response) => {
-    return res.status(200).send();
+    return res.status(200).json({ message: 'this is an update' });
   };
 
   save = async (req: Request, res: Response) => {
