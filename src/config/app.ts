@@ -28,7 +28,7 @@ class App {
   private middlewares() {
     this.express.use(express.json());
     this.express.use(cors({ origin: '*' }));
-    this.express.use(helmet());
+    // this.express.use(helmet());
     this.express.use(
       morgan(':method :remote-addr :status ":url" :response-time ms'),
     );
